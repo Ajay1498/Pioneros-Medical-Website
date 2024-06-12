@@ -5,6 +5,14 @@
     --dark: #1B2C51;
 }
 
+.alert {
+    transition: opacity 0.5s ease-in-out;
+}
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .fw-medium {
     font-weight: 500 !important;
 }

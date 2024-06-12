@@ -49,23 +49,36 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>Al Hulaila Industrial Zone-FZ RAK, UAE.</small>
+                    <small>{{header.location}}</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center py-3">
                     <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                    <small>{{header.open}}</small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small> (+971-5) 5550 1448</small>
+                    <small> {{header.phone}}</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                    {% for head in headers  %}
+                    {% if head.facebook_url %}
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="{{head.facebook_url}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %}
+                    {% if head.twitter_url %}
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="{{head.twitter_url}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                    {% endif %}
+                    {% if head.linkedin_url %}
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="{{head.linkedin_url}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    {% endif %}
+                    {% if head.instagram_url %}
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="{{head.instagram_url}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                    {% endif %}
+                    {% if head.youtube_url %}
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="{{head.youtube_url}}" target="_blank"> <i class="fab fa-youtube"></i></a>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -77,7 +90,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a href="{% url "index" %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
           <h1 class="m-0 text-primary">
-            <img src="{% static "img/logo2.png" %}" alt="Pioneros Logo" width="150" height="50"> </h1>
+            <img src="{{header.logo.url}}" alt="Pioneros Logo" width="150" height="50"> </h1>
         </a>      
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -114,39 +127,60 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-light mb-4">Address</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>RAK, United Arab Emirates.</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(+971-5) 5550 1448</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@Pionerosfz.ae</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{header.location}}</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{header.phone}}</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{header.email}}</p>
                 <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                    {% for head in headers  %}
+                    {% if head.facebook_url %}
+                    <a class="btn btn-square" href="{{ head.facebook_url }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %}
+                    {% if head.twitter_url %}
+                    <a class="btn btn-square" href="{{ head.twitter_url }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                    {% endif %}
+                    {% if head.instagram_url %}
+                    <a class="btn btn-square" href="{{ head.instagram_url }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                    {% endif %}
+                    {% if head.youtube_url %}
+                    <a class="btn btn-square" href="{{ head.youtube_url }}" target="_blank"><i class="fab fa-youtube"></i></a>
+                    {% endif %}
+                    {% if head.linkedin_url %}
+                    <a class="btn btn-square" href="{{ head.linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    {% endif %}
+                    {% endfor %}
+
+
+
+
+
+
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-light mb-4">Services</h5>
-                <a class="btn btn-link" href="">Emergency</a>
-                <a class="btn btn-link" href="">Laboratory</a>
-                <a class="btn btn-link" href="">Neonatal Care</a>
-                <a class="btn btn-link" href="">Respirotary Care</a>
-                <a class="btn btn-link" href="">Laboratory</a>
+                {% for service in services|slice:":5" %}
+                <a class="btn btn-link" href="{% url "service" %}">{{service.title}}</a>
+                {% endfor %}
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-light mb-4">Quick Links</h5>
-                <a class="btn btn-link" href="">Careers</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
-                <a class="btn btn-link" href="">Terms & Condition</a>
-                <a class="btn btn-link" href="">Support</a>
+                <a class="btn btn-link" href="{% url "index" %}">home</a>
+                <a class="btn btn-link" href="{% url "about" %}">About</a>
+                <a class="btn btn-link" href="{% url "contact" %}">Contact Us</a>
+                <a class="btn btn-link" href="{% url "service" %}">PRODUCTS & SERVICE </a>
+                <a class="btn btn-link" href="{% url "feature" %}">WAREHOUSES & LOGISTICS</a>
+
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-light mb-4">Newsletter</h5>
-                <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                <form method="POST" action="{% url "index" %}">
+                    {% csrf_token %}
+                <p>Stay updated with our latest news and offers.</p>
                 <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email" placeholder="Your email" required>
+                    <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Join</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>

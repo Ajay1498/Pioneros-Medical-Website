@@ -16,6 +16,26 @@
     new WOW().init();
 
 
+
+    $(function () {
+        $('#date').datetimepicker({
+            format: 'L'
+        });
+        $('#time').datetimepicker({
+            format: 'LT'
+        });
+
+        // Hide success message after 3 seconds
+        setTimeout(function() {
+            var message = document.getElementById('success-message');
+            if (message) {
+                message.classList.add('hidden');
+            }
+        }, 3000);
+    });
+
+
+
     // Sticky Navbar
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
