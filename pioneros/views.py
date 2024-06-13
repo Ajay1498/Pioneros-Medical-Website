@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import *
+from django.http import HttpResponse
 from django.contrib import messages
-from django.urls import reverse
+from django.views.decorators.csrf import csrf_protect
 
 
 # Create your views here.
@@ -93,15 +94,13 @@ def contact(request):
             return redirect('contact')  # Redirect back to the 'service' view
     return render(request, "contact.html", {'headers': Header.objects.all()})
 
-def subscribe(request):
+@csrf_protect
+def submit_newsletter(request):
     if request.method == 'POST':
-        print(request.POST)  # Print POST data to console for debugging
         email = request.POST.get('email')
         if email:
-            Subscription.objects.create(email=email)
-            messages.success(request, 'Subscription successful!')
-            return redirect(request.META.get('HTTP_REFERER', reverse('home')))
-        else:
-            messages.error(request, 'Please provide a valid email address.')
-
-    return render(request, 'base.html')
+            # Save email to the database
+            newsletter = Subscription(email=email)
+            newsletter.save()
+            return redirect('index')  # Redirect to a success page or the home page
+    return HttpResponse("Invalid request", status=400)

@@ -9,6 +9,7 @@ urlpatterns = [
     path("service/", service, name="service"),
     path("feature/", feature, name="feature"),
     path("contact/", contact, name="contact"),
+    path("submit_newsletter/", submit_newsletter, name="submit_newsletter"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

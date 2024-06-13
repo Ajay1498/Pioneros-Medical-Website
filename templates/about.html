@@ -120,8 +120,17 @@ Pioneros / About
                     <div class="team-text bg-light text-center p-4">
                         <h5>{{doctor.name}}</h5>
                         <p class="text-primary">{{doctor.department}}</p>
-
-CONTACT
+                        <div class="team-social text-center">
+                            {% if doctor.facebook_url %}
+                            <a class="btn btn-square" href="{{doctor.facebook_url}}"><i class="fab fa-facebook-f"></i></a>
+                            {% endif %}
+                            {% if doctor.twitter_url %}
+                            <a class="btn btn-square" href="{{doctor.twitter_url}}"><i class="fab fa-twitter"></i></a>
+                            {% endif %}
+                            {% if doctor.instagram_url %}
+                            <a class="btn btn-square" href="{{doctor.instagram_url}}"><i class="fab fa-instagram"></i></a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
                 </div>
