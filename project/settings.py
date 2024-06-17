@@ -29,11 +29,11 @@ SECRET_KEY = 'django-insecure-t6317#g9=26bq3_hs37y*ycs1#uqp4obybh^!sb(e!_7(2!l54
 DEBUG = True
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = os.getenv('EMAIL_HOST') # Use your SMTP host
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = "smtp.gmail.com"  # Use your SMTP host
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '14ing.dev@gmail.com'
+EMAIL_HOST_PASSWORD = 'qbex ccbd ccuz ukyy'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Specify the host email address for receiving contact form notifications
