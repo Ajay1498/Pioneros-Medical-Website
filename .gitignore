@@ -124,6 +124,7 @@ celerybeat.pid
 .venv
 env/
 venv/
+venv
 ENV/
 env.bak/
 venv.bak/
@@ -131,6 +132,7 @@ db.sqlite3
 old.sqlite3
 /klinik-1.0.0.zip
 /klinik-1.0.0
+Pioneros.zip
 
 
 
