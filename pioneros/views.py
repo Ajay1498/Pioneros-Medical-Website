@@ -41,7 +41,7 @@ def about(request):
 # handel service page
 def service(request):
     hd = Header.objects.first()
-    service = Products.objects.all()
+    service = Services.objects.all()
     doctors = Doctor.objects.all()
     testimonial = Testimonial.objects.all()
     context = {'doctors': doctors, 'services':service, 'hds':hd, 'testimonials': testimonial}  # Initialize context at the start
@@ -75,6 +75,44 @@ def service(request):
             messages.error(request, 'Please fill in all fields.')
 
     return render(request, "service.html", context)
+
+# handel product page
+def product(request):
+    hd = Header.objects.first()
+    product = Products.objects.all()
+    doctors = Doctor.objects.all()
+    testimonial = Testimonial.objects.all()
+    context = {'doctors': doctors, 'products':product, 'hds':hd, 'testimonials': testimonial}  # Initialize context at the start
+
+    if request.method == "POST":
+        name = request.POST.get('nm')
+        email = request.POST.get('em')
+        phone = request.POST.get('ph')
+        doctor_id = request.POST.get('doc')
+        date1 = request.POST.get('date')
+        date2 = request.POST.get('time')
+        problem = request.POST.get('prob')
+
+        if name and email and phone and doctor_id and date1 and date2 and problem:
+            doctor = Doctor.objects.get(id=doctor_id)
+            Appointment.objects.create(
+                name=name, email=email, phone=phone, doctor=doctor, date=date1, time=date2, problems=problem
+            )
+
+            subject = "New Appointment Received"
+            message_body = (
+                f"Name: {name}\nEmail: {email}\nDoctor: {doctor.name}\nDate: {date1} {date2}\nProblem: {problem}"
+            )
+            from_email = settings.EMAIL_HOST_USER
+            recipient = ['14ing.dev@gmail.com']
+            send_mail(subject, message_body, from_email, recipient)
+
+            messages.success(request, 'Appointment booked successfully!')
+            return redirect('product')  # Redirect back to the 'service' view
+        else:
+            messages.error(request, 'Please fill in all fields.')
+
+    return render(request, "product.html", context)
 
 # handel feature page
 def feature(request):

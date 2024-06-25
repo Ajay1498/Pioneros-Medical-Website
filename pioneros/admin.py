@@ -13,6 +13,7 @@ class DoctorAdmin(admin.ModelAdmin):
     fields = ['name', 'department', 'image', 'facebook_url', 'twitter_url', 'instagram_url']
 admin.site.register(CustomizedERP)
 admin.site.register(Products)
+admin.site.register(Services)
 admin.site.register(Features)
 admin.site.register(Features_Content)
 admin.site.register(Appointment)
