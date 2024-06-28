@@ -4,15 +4,16 @@ from .models import *
 # Register your models here.
 admin.site.register(Contact)
 admin.site.register(Header)
-admin.site.register(Headersocial)
+admin.site.register(CustomizedERPTitle)
 admin.site.register(Carousel)
 admin.site.register(Department)
-@admin.register(Doctor)
-class DoctorAdmin(admin.ModelAdmin):
-    list_display = ['name', 'department']
-    fields = ['name', 'department', 'image', 'facebook_url', 'twitter_url', 'instagram_url']
+admin.site.register(Doctor)
 admin.site.register(CustomizedERP)
 admin.site.register(Products)
+admin.site.register(ProductBackgroundImage)
+admin.site.register(ServicesBackgroundImage)
+admin.site.register(FeaturesBackgroundImage)
+admin.site.register(WarehouseAndLogistic)
 admin.site.register(Services)
 admin.site.register(Features)
 admin.site.register(Features_Content)

@@ -21,15 +21,6 @@ class Header(models.Model):
         return self.location
 
 
-class Headersocial(models.Model):
-    image = models.ImageField(upload_to="images/headersocial/")
-    url = models.URLField(max_length=200)
-    platform = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.platform if self.platform else ""
-
-
 class Carousel(models.Model):
     title = models.CharField(max_length=25)
     image = models.ImageField(upload_to="images/carousels/")
@@ -67,6 +58,12 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.name
+    
+class CustomizedERPTitle(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
 
 
 class CustomizedERP(models.Model):
@@ -75,6 +72,10 @@ class CustomizedERP(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class ProductBackgroundImage(models.Model):
+    image = models.ImageField(upload_to="images/productsbackground/")
 
 
 class Products(models.Model):
@@ -86,6 +87,10 @@ class Products(models.Model):
         return self.title
     
     
+class ServicesBackgroundImage(models.Model):
+    image = models.ImageField(upload_to="images/servicesbackground/")
+    
+    
 class Services(models.Model):
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=50)
@@ -95,6 +100,13 @@ class Services(models.Model):
         return self.title
 
 
+class FeaturesBackgroundImage(models.Model):
+    image = models.ImageField(upload_to="images/featuresbackground/")
+    
+class WarehouseAndLogistic(models.Model):
+    image = models.ImageField(upload_to="images/warehouseandlogistic/")
+    
+    
 class Features(models.Model):
     title = models.CharField(max_length=25, default=None)
     description = models.CharField(max_length=255, default=None)

@@ -6,10 +6,9 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 
-
-# Create your views here.
 # handel index page
 def index(request):
+    title = CustomizedERPTitle.objects.all()
     about = About.objects.all()
     about_content = About_Content.objects.all().order_by('-id')
     feature = Features.objects.all()
@@ -23,8 +22,10 @@ def index(request):
               'erps':erps, 
               'about':about, 
               'abouts':about_content,
-              'features':feature}
+              'features':feature,
+              'titles':title,}
     return render(request, "index.html", context)
+
 
 # handel about page
 def about(request):
@@ -38,13 +39,19 @@ def about(request):
                'features':feature,}
     return render(request, "about.html", context)
 
+
 # handel service page
 def service(request):
+    image = ServicesBackgroundImage.objects.first()
     hd = Header.objects.first()
     service = Services.objects.all()
     doctors = Doctor.objects.all()
     testimonial = Testimonial.objects.all()
-    context = {'doctors': doctors, 'services':service, 'hds':hd, 'testimonials': testimonial}  # Initialize context at the start
+    context = {'doctors': doctors, 
+               'services':service, 
+               'hds':hd, 
+               'testimonials': testimonial, 
+               'images':image }  # Initialize context at the start
 
     if request.method == "POST":
         name = request.POST.get('nm')
@@ -76,13 +83,19 @@ def service(request):
 
     return render(request, "service.html", context)
 
+
 # handel product page
 def product(request):
+    image = ProductBackgroundImage.objects.first()
     hd = Header.objects.first()
     product = Products.objects.all()
     doctors = Doctor.objects.all()
     testimonial = Testimonial.objects.all()
-    context = {'doctors': doctors, 'products':product, 'hds':hd, 'testimonials': testimonial}  # Initialize context at the start
+    context = {'doctors': doctors, 
+               'products':product, 
+               'hds':hd, 
+               'testimonials': testimonial, 
+               'images':image}  # Initialize context at the start
 
     if request.method == "POST":
         name = request.POST.get('nm')
@@ -114,13 +127,19 @@ def product(request):
 
     return render(request, "product.html", context)
 
+
 # handel feature page
 def feature(request):
+    background_image = FeaturesBackgroundImage.objects.first()
+    image = WarehouseAndLogistic.objects.all().order_by('-id')
     feature = Features.objects.all()
-    features_content = Features_Content.objects.all().order_by('-id')
+    features_content = Features_Content.objects.all().order_by('-id') 
     context = {'features':feature,
-               'features_contents':features_content}
-    return render(request, "feature.html", context)
+               'features_contents':features_content,
+               'images':background_image,
+               'warehouses':image}
+    return render(request, "feature.html", context )
+
 
 # handel contact page
 def contact(request): 
@@ -136,7 +155,6 @@ def contact(request):
             Contact.objects.create(
                 name=name, email=email, subject=subjects, message=message
             )
-
             subject = "New Query Request Recieved"
             message_body = (
                 f"Name: {name}\nEmail: {email}\nSubject: {subjects}\nMessage: {message}"
@@ -148,6 +166,7 @@ def contact(request):
             messages.success(request, 'Your Query has been sent successfully!')
             return redirect('contact')  # Redirect back to the 'service' view
     return render(request, "contact.html", {'headers': Header.objects.all()})
+
 
 @csrf_protect
 def submit_newsletter(request):

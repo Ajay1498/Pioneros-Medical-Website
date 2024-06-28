@@ -28,7 +28,7 @@ Pioneros / Product
 </div>
 {% endif %}
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style="background: url('{{images.image.url}}') top center no-repeat; background-size: cover; text-shadow: 0 0 30px rgba(0, 0, 0, .1);">
         <div class="container py-5">
             <h1 class="display-3 text-white mb-3 animated slideInDown">Product</h1>
             <nav aria-label="breadcrumb animated slideInDown">
@@ -54,8 +54,8 @@ Pioneros / Product
                 {% for product in products  %}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <img class="img-fluid rounded w-50 bg-white"  style="width: 65px; height: 35px;" src="{{product.image.url}}" alt="">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 200px; height: 200px;">
+                            <img class="img-fluid rounded w-100 h-100" style="object-fit: cover;" src="{{ product.image.url }}" alt="">
                         </div>
                         <h4 class="mb-3">{{product.title}}</h4>
                         <p class="mb-4">{{product.description}}</p>
