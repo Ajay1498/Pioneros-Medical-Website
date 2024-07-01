@@ -58,7 +58,8 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class CustomizedERPTitle(models.Model):
     title = models.CharField(max_length=100)
 
@@ -72,7 +73,7 @@ class CustomizedERP(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 
 class ProductBackgroundImage(models.Model):
     image = models.ImageField(upload_to="images/productsbackground/")
@@ -85,12 +86,12 @@ class Products(models.Model):
 
     def __str__(self):
         return self.title
-    
-    
+
+
 class ServicesBackgroundImage(models.Model):
     image = models.ImageField(upload_to="images/servicesbackground/")
-    
-    
+
+
 class Services(models.Model):
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=50)
@@ -102,11 +103,12 @@ class Services(models.Model):
 
 class FeaturesBackgroundImage(models.Model):
     image = models.ImageField(upload_to="images/featuresbackground/")
-    
+
+
 class WarehouseAndLogistic(models.Model):
     image = models.ImageField(upload_to="images/warehouseandlogistic/")
-    
-    
+
+
 class Features(models.Model):
     title = models.CharField(max_length=25, default=None)
     description = models.CharField(max_length=255, default=None)
